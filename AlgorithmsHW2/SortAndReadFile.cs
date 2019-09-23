@@ -8,16 +8,17 @@ namespace AlgorithmsHW2
     public class SortAndReadFile
     {
         GatherReadData gatherReadData;
-        List<int> myInts;
-        List<Guid> myGuids;
-        List<double> myDoubles;
+        List<int> myBaseInts;
+        List<Guid> myBaseGuids;
+        List<double> myBaseDoubles;
+        List<string> finalSortedData;
         string path = @"C:\Workspace\Algorithms\MyTest.csv";
 
         public SortAndReadFile()
         {
-            myInts = new List<int>();
-            myGuids = new List<Guid>();
-            myDoubles = new List<double>();
+            myBaseInts = new List<int>();
+            myBaseGuids = new List<Guid>();
+            myBaseDoubles = new List<double>();
             gatherReadData = new GatherReadData();
         }
 
@@ -26,7 +27,6 @@ namespace AlgorithmsHW2
             foreach (string line in File.ReadLines(path))
             {
                 string[] values = line.Split(',');
-
 
                 gatherReadData.GatherData(Int32.Parse(values[0]), Guid.Parse(values[1]), Double.Parse(values[2]));
             }

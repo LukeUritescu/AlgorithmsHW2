@@ -6,9 +6,9 @@ namespace AlgorithmsHW2
 {
     public class GatherReadData
     {
-        public List<int> myInts;
-        public List<Guid> myGuids;
-        public List<double> myDoubles;
+        protected List<int> myInts;
+        protected List<Guid> myGuids;
+        protected List<double> myDoubles;
 
         public GatherReadData()
         {
@@ -24,5 +24,19 @@ namespace AlgorithmsHW2
             myDoubles.Add(readDouble);
         }
 
+        public int GetMyInts(int i)
+        {
+           return this.myInts[i];
+        }
+
+        public Guid GetMyGuid(int i)
+        {
+            return this.myGuids[i];
+        }
+
+        public double GetMyDouble(int i)
+        {
+            return this.myDoubles[i];
+        }
     }
 }
