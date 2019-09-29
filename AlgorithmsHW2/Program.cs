@@ -20,9 +20,13 @@ namespace AlgorithmsHW2
         static PersonalStopWatch stopWatch;
         static void Main(string[] args)
         {
+
             readFile = new ReadFileAndSort();
+            readFile.RadixSortGuidData();
+            readFile.QuickSortGuidData();
             readFile.QuickSortDoubleData();
             readFile.RadixSortDoubleData();
+            Console.ReadLine();
         }
     }
 }
