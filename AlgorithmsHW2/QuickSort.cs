@@ -7,6 +7,7 @@ namespace AlgorithmsHW2
 {
     public class QuickSort
     {
+
         private List<double> sortList;
        
 
@@ -16,11 +17,13 @@ namespace AlgorithmsHW2
            
         }
 
+
         public List<Double> GetQuickSortDoubleList()
         {
             return sortList;
         }
      
+
         public void QuickSortData(int positionLeft, int positionRight)
         {
             
@@ -34,21 +37,14 @@ namespace AlgorithmsHW2
             }
         }
 
+        //
         public int Partition(List<double> sortList, int positionLeft, int positionRight)
         {
 
-            var pivot = FindingPivot(sortList, positionLeft, positionRight);
-
-            return pivot;
-        }
-
-
-        private int FindingPivot(List<double> sortList, int positionLeft, int positionRight)
-        {
             var pivot = sortList[positionRight];
             int i = positionLeft - 1;
 
-            for(int j = positionLeft; j <positionRight; j++)
+            for (int j = positionLeft; j < positionRight; j++)
             {
                 if (sortList[j] <= pivot)
                 {
@@ -57,8 +53,26 @@ namespace AlgorithmsHW2
                 }
             }
             Swap(sortList, i + 1, positionRight);
-            return i+1;
+            return i + 1;
         }
+
+
+        //private int FindingPivot(List<double> sortList, int positionLeft, int positionRight)
+        //{
+        //    var pivot = sortList[positionRight];
+        //    int i = positionLeft - 1;
+
+        //    for(int j = positionLeft; j <positionRight; j++)
+        //    {
+        //        if (sortList[j] <= pivot)
+        //        {
+        //            i++;
+        //            Swap(sortList, i, j);
+        //        }
+        //    }
+        //    Swap(sortList, i + 1, positionRight);
+        //    return i+1;
+        //}
 
         public void Swap(List<double> sortList, int positionLeft, int positionRight)
         {

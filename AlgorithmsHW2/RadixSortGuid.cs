@@ -6,13 +6,19 @@ namespace AlgorithmsHW2
 {
     public class RadixSortGuid
     {
+        //This is to take in the  
         List<Guid> sortGuidList;
 
+        /// We are using Arrays for this sort because I wasn't able to get Lists to work
         Int64[] finalSortedArray;
 
         private Int64[] firstSectionGuids;
         private Int64[] secondSectionGuids;
 
+        /// <summary>
+        /// Constructor to get the List of Guids from the class ReadFileAndSort
+        /// </summary>
+        /// <param name="sortListBase"></param>
         public RadixSortGuid(List<Guid> sortListBase)
         {
             finalSortedArray = new Int64[sortListBase.Count];
@@ -22,6 +28,9 @@ namespace AlgorithmsHW2
             secondSectionGuids = new Int64[sortGuidList.Count];
         }
 
+        /// <summary>
+        /// We treat the Guid elements as strings, split them by '-' then parse them as hexnumbers into an Int64 array
+        /// </summary>
         public void changeGuidsToInt64()
         {
 
@@ -37,18 +46,23 @@ namespace AlgorithmsHW2
 
         public void radixSort()
         {
-            long[] tempList = new long[firstSectionGuids.Length];
-            long[] convertedListDoubles = new long[firstSectionGuids.LongLength];
+            ///Temporary array and array of converted Int64 to Longs
+            long[] tempArray = new long[firstSectionGuids.Length];
+            long[] convertedArrayGuids = new long[firstSectionGuids.LongLength];
 
-
+            ///BitConverter.GetBytes converts the specified array into an array of bytes
+            ///BitConverterr.ToInt64 converts that array of bytes into a 64-bit signed integer
+            ///This helps convert our doubles to longs
+            ///In this instance the arrays are both Int64 so we don't need to convert which saves a little bit of time
             for (int i = 0; i < firstSectionGuids.LongLength; i++)
             {
-                convertedListDoubles[i] = BitConverter.ToInt64(BitConverter.GetBytes(firstSectionGuids[i]));
+                convertedArrayGuids[i] = firstSectionGuids[i];
+                //convertedArrayGuids[i] = BitConverter.ToInt64(BitConverter.GetBytes(firstSectionGuids[i]));
             }
 
             int groupLength = 4;
             int bitLength = 64;
-
+            /* This <<  operator shifts the lefthand operand by the number of bits specified by groupLength*/
             int[] count = new int[1 << groupLength];
             int[] prefixArray = new int[1 << groupLength];
             long groups = bitLength / groupLength;
@@ -58,35 +72,38 @@ namespace AlgorithmsHW2
 
             for (int c = 0, shift = 0; c < groups; c++, shift += groupLength)
             {
+                //this resets the count array
                 for (int j = 0; j < count.Length; j++)
                 {
                     count[j] = 0;
                 }
-
-                for (int i = 0; i < convertedListDoubles.LongLength; i++)
+                //counts elements of the c-th group
+                for (int i = 0; i < convertedArrayGuids.LongLength; i++)
                 {
-                    count[(convertedListDoubles[i] >> shift) & mask]++;
-
-                    if (c == 0 && convertedListDoubles[i] < 0)
+                    count[(convertedArrayGuids[i] >> shift) & mask]++;
+                    //checks ofr negative values
+                    if (c == 0 && convertedArrayGuids[i] < 0)
                         negatives++;
                 }
                 if (c == 0)
                 {
-                    positives = convertedListDoubles.LongLength - negatives;
+                    positives = convertedArrayGuids.LongLength - negatives;
                 }
-
+                //calculates prefixes
                 prefixArray[0] = 0;
                 for (int i = 1; i < count.LongLength; i++)
                 {
                     prefixArray[i] = prefixArray[i - 1] + count[i - 1];
                 }
-
-                for (int i = 0; i < convertedListDoubles.Length; i++)
+                //from convertedArrayGuids to tempArray ordered by the c-th group
+                for (int i = 0; i < convertedArrayGuids.Length; i++)
                 {
-                    long index = prefixArray[(convertedListDoubles[i] >> shift) & mask]++;
+                    long index = prefixArray[(convertedArrayGuids[i] >> shift) & mask]++;
                     if (c == groups - 1)
                     {
-                        if (convertedListDoubles[i] < 0)
+                        //This is the last and most important group, if there is a negative
+                        //number we put them in the front of theh array and push the positivese back
+                        if (convertedArrayGuids[i] < 0)
                         {
                             index = positives - (index - negatives) - 1;
                         }
@@ -95,22 +112,21 @@ namespace AlgorithmsHW2
                             index += negatives;
                         }
                     }
-                    tempList[index] = convertedListDoubles[i];
+                    tempArray[index] = convertedArrayGuids[i];
                 }
-                tempList.CopyTo(convertedListDoubles, 0);
+                    //This repeats the process until the last group of sorting
+                tempArray.CopyTo(convertedArrayGuids, 0);
             }
 
 
 
-
+            //Converts backk the longs to Int64
             finalSortedArray = new Int64[firstSectionGuids.LongLength];
-
-            for (int i = 0; i < convertedListDoubles.LongLength; i++)
+            for (int i = 0; i < convertedArrayGuids.LongLength; i++)
             {
-                finalSortedArray[i] = BitConverter.ToInt64(BitConverter.GetBytes(convertedListDoubles[i]), 0);
+                finalSortedArray[i] = convertedArrayGuids[i];
+                //finalSortedArray[i] = BitConverter.ToInt64(BitConverter.GetBytes(convertedArrayGuids[i]), 0);
             }
-
-            //return finalSortedList;
 
         }
 

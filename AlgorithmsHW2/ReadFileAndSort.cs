@@ -12,13 +12,17 @@ namespace AlgorithmsHW2
         RadixSort radixSort;
         QuickSortGuid quickGuidSort;
         RadixSortGuid radixGuidSort;
+        InsertionDouble insertionDouble;
+        InsertionGuids insertionGuids;
+        BubbleSortDouble bubbleDouble;
+        BubbleSortGuids bubbleGuid;
 
         private List<int> myBaseInts;
         private List<Guid> myBaseGuids;
         private List<double> myBaseDoubles;
         private List<string> finalSortedData;
 
-        private string path = @"C:\Workspace\Algorithms\MyTest.csv";
+        private string path = @"C:\Workspace\Algorithms\SixK.csv";
 
 
         public ReadFileAndSort()
@@ -32,8 +36,83 @@ namespace AlgorithmsHW2
 
             quickSort = new QuickSort(GetMyDoubles());
             radixSort = new RadixSort(GetMyDoubles());
-            quickGuidSort = new QuickSortGuid(myBaseGuids);
-            radixGuidSort = new RadixSortGuid(myBaseGuids);
+            quickGuidSort = new QuickSortGuid(GetMyGuids());
+            radixGuidSort = new RadixSortGuid(GetMyGuids());
+            insertionDouble = new InsertionDouble(GetMyDoubles());
+            insertionGuids = new InsertionGuids(GetMyGuids());
+            bubbleDouble = new BubbleSortDouble(GetMyDoubles());
+            bubbleGuid = new BubbleSortGuids(GetMyGuids());
+
+        }
+
+        public void BubbleSortDouble()
+        {
+            stopWatch.ResetStopWatch();
+            stopWatch.StartStopWatch();
+            bubbleDouble.BubbleSort();
+            stopWatch.StopStopWatch();
+            stopWatch.GetTimeElapsed("Bubble Sort");
+            Console.ReadLine();
+
+            stopWatch.ResetStopWatch();
+            stopWatch.StartStopWatch();
+            WriteSortedListBubbleDouble(@"c:\Workspace\Algorithms\DoubleBubbleSort.csv");
+            stopWatch.StartStopWatch();
+            stopWatch.GetTimeElapsed("Bubble Sort");
+            Console.ReadLine();
+        }
+
+        public void BubbleSortGuid()
+        {
+            bubbleGuid.changeGuidsToInt64();
+            stopWatch.ResetStopWatch();
+            stopWatch.StartStopWatch();
+            bubbleGuid.BubbleSort();
+            stopWatch.StopStopWatch();
+            stopWatch.GetTimeElapsed("Bubble Sort Guid");
+            Console.ReadLine();
+
+            stopWatch.ResetStopWatch();
+            stopWatch.StartStopWatch();
+            WriteSortedListBubbleGuid(@"c:\Workspace\Algorithms\GuidBubbleSort.csv");
+            stopWatch.StartStopWatch();
+            stopWatch.GetTimeElapsed("Bubble Sort");
+            Console.ReadLine();
+        }
+
+        public void InsertionSortDouble()
+        {
+            stopWatch.ResetStopWatch();
+            stopWatch.StartStopWatch();
+            insertionDouble.Insertion();
+            stopWatch.StopStopWatch();
+            stopWatch.GetTimeElapsed("Insertion Sort");
+            Console.ReadLine();
+
+            stopWatch.ResetStopWatch();
+            stopWatch.StartStopWatch();
+            WriteSortedListInsertionDouble(@"c:\Workspace\Algorithms\DoubleInsertionSort.csv");
+            stopWatch.StartStopWatch();
+            stopWatch.GetTimeElapsed("Insertion Sort");
+            Console.ReadLine();
+        }
+
+        public void InsertionSortGuids()
+        {
+            insertionGuids.changeGuidsToInt64();
+            stopWatch.ResetStopWatch();
+            stopWatch.StartStopWatch();
+            insertionGuids.Insertion();
+            stopWatch.StopStopWatch();
+            stopWatch.GetTimeElapsed("Insertion Sort");
+            Console.ReadLine();
+
+            stopWatch.ResetStopWatch();
+            stopWatch.StartStopWatch();
+            WriteSortedListInsertionGuids(@"c:\Workspace\Algorithms\GuidInsertionSort.csv");
+            stopWatch.StartStopWatch();
+            stopWatch.GetTimeElapsed("Insertion Sort");
+            Console.ReadLine();
         }
 
         public void QuickSortGuidData()
@@ -83,7 +162,7 @@ namespace AlgorithmsHW2
 
             stopWatch.ResetStopWatch();
             stopWatch.StartStopWatch();
-            WriteSortedListGuidRadix(@"c:\Workspace\Algorithms\GuidRadixSort.csv");
+            WriteSortedListGuidRadix(@"c:\Workspace\Algorithms\GuidRadixSortWithBit.csv");
             stopWatch.StartStopWatch();
             stopWatch.GetTimeElapsed("Radix Sort Guid");
             Console.ReadLine();
@@ -130,8 +209,85 @@ namespace AlgorithmsHW2
             }
         }
 
+        public void WriteSortedListBubbleDouble(string path)
+        {
+            try
+            {
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true))
+                {
+                    for (int i = 0; i < myBaseDoubles.Count; i++)
+                    {
+                        file.WriteLine(bubbleDouble.GetBubbleSortDouble()[i].ToString());
+                    }
 
+                }
 
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("This program did not work:", ex);
+            }
+        }
+
+        public void WriteSortedListBubbleGuid(string path)
+        {
+            try
+            {
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true))
+                {
+                    for (int i = 0; i < myBaseDoubles.Count; i++)
+                    {
+                        file.WriteLine(bubbleGuid.GetBubbleSortDouble()[i].ToString());
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("This program did not work:", ex);
+            }
+        }
+
+        public void WriteSortedListInsertionDouble(string path)
+        {
+            try
+            {
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true))
+                {
+                    for (int i = 0; i < myBaseDoubles.Count; i++)
+                    {
+                        file.WriteLine(insertionDouble.GetDoubleInsertion()[i].ToString());
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("This program did not work:", ex);
+            }
+        }
+
+        public void WriteSortedListInsertionGuids(string path)
+        {
+            try
+            {
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true))
+                {
+                    for (int i = 0; i < myBaseDoubles.Count; i++)
+                    {
+                        file.WriteLine(insertionGuids.GetGuidInsertion()[i].ToString());
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("This program did not work:", ex);
+            }
+        }
 
         public void WriteSortedList(string path)
         {

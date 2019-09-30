@@ -6,6 +6,9 @@ using System.Threading;
 
 namespace AlgorithmsHW2
 {
+    /// <summary>
+    /// Just a quick stopwatch class I made to see how long it takes or each sort and to write to the 
+    /// </summary>
     public class PersonalStopWatch
     {
         Stopwatch stopwatch;

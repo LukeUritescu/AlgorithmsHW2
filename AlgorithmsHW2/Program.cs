@@ -8,9 +8,6 @@ namespace AlgorithmsHW2
 
     /// <summary>
     /// BIG TO DO!!!!! 
-    /// CREEAATE  READ FILE CLASS TO KEEP CODE DRY!! 
-    /// CREEATE QUICKSORT CLASS TO KEEP DRY
-    /// CREEATE RADIX SORT CLASS TO KEEP DRY
     /// </summary>
 
 
@@ -22,11 +19,18 @@ namespace AlgorithmsHW2
         {
 
             readFile = new ReadFileAndSort();
-            readFile.RadixSortGuidData();
-            readFile.QuickSortGuidData();
+
+            readFile.BubbleSortDouble();
+            readFile.BubbleSortGuid();
+
             readFile.QuickSortDoubleData();
+            readFile.QuickSortGuidData();
+
             readFile.RadixSortDoubleData();
-            Console.ReadLine();
+            readFile.RadixSortGuidData();
+
+            readFile.InsertionSortDouble();
+            readFile.InsertionSortGuids();
         }
     }
 }

@@ -20,7 +20,10 @@ namespace AlgorithmsHW2
             long[] tempList = new long[sortList.LongLength];
             long[] convertedListDoubles = new long[sortList.LongLength];
 
-
+            ///BitConverter.GetBytes converts the specified array into an array of bytes
+            ///BitConverterr.ToInt64 converts that array of bytes into a 64-bit signed integer
+            ///This helps convert our doubles to longs
+            ///In this instance the arrays are both Int64 so we don't need to convert which saves a little bit of time
             for (int i = 0; i < sortList.LongLength; i++)
             {
                 convertedListDoubles[i] = BitConverter.ToInt64(BitConverter.GetBytes(sortList[i]));
