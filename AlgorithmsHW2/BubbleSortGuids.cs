@@ -6,13 +6,13 @@ namespace AlgorithmsHW2
 {
     class BubbleSortGuids
     {
-        private List<Guid> guidsList;
+        private List<Guid> sortGuidList;
         private Int64[] firstSectionGuids;
         private Int64[] secondSectionGuids;
 
         public BubbleSortGuids(List<Guid> sortGuids)
         {
-            guidsList = new List<Guid>(sortGuids);
+            sortGuidList = new List<Guid>(sortGuids);
             firstSectionGuids = new Int64[sortGuids.Count];
             secondSectionGuids = new Int64[sortGuids.Count];
         }
@@ -20,9 +20,9 @@ namespace AlgorithmsHW2
         public void changeGuidsToInt64()
         {
 
-            for (int i = 0; i < guidsList.Count; i++)
+            for (int i = 0; i < sortGuidList.Count; i++)
             {
-                string[] values = guidsList[i].ToString().Split('-');
+                string[] values = sortGuidList[i].ToString().Split('-');
                 firstSectionGuids[i] = (Int64.Parse(values[0].ToString(), System.Globalization.NumberStyles.HexNumber));
                 secondSectionGuids[i] = ((Int64.Parse(values[1].ToString(), System.Globalization.NumberStyles.HexNumber)));
 
@@ -34,27 +34,48 @@ namespace AlgorithmsHW2
         /// </summary>
         public void BubbleSort()
         {
-            Int64 keyTemp;
+            Int64 keyTemp = 0;
+            int lastSwap = firstSectionGuids.Length - 1;
 
             for (int x = 0; x <= firstSectionGuids.Length - 2; x++)
             {
-                for (int y = 0; y <= firstSectionGuids.Length - 2; y++)
+                int currentSwap = -1;
+                for (int y = 0; y < lastSwap; y++)
                 {
                     if (firstSectionGuids[y] > firstSectionGuids[y + 1])
                     {
-                        keyTemp = firstSectionGuids[y + 1];
-                        firstSectionGuids[y + 1] = firstSectionGuids[y];
-                        firstSectionGuids[y] = keyTemp;
+                        Swap(keyTemp, y);
+                        SwapGuids(y);
+                        currentSwap = y;
                     }
                 }
+                lastSwap = currentSwap;
             }
 
         }
 
-        public Int64[] GetBubbleSortDouble()
+        public void Swap(Int64 keyTemp, int y)
         {
-            return firstSectionGuids;
+            keyTemp = firstSectionGuids[y + 1];
+            firstSectionGuids[y + 1] = firstSectionGuids[y];
+            firstSectionGuids[y] = keyTemp;
+        }
 
+        public void SwapGuids(int y)
+        {
+            Guid keyTempGuid = sortGuidList[y + 1];
+            sortGuidList[y + 1] = sortGuidList[y];
+            sortGuidList[y] = keyTempGuid;
+        }
+
+        //public Int64[] GetBubbleSortDouble()
+        //{
+        //    return firstSectionGuids;
+        //}
+
+        public List<Guid> GetBubbleSortDouble()
+        {
+            return sortGuidList;
         }
     }
 }

@@ -21,16 +21,10 @@ namespace AlgorithmsHW2
         {
             for(int i = 0; i < doublesArray1.LongLength -1; i++)
             {
-                //double keyTemp = doublesArray1[i];
-                //int j = i - 1;
-
-                //while (j >= 0 && doublesArray1[j] > keyTemp)
-                //{
-                //    doublesArray1[j + 1] = doublesArray1[j];
-                //    j = j - 1;
-                //}
-                //doublesArray1[j + 1] = keyTemp;
-                for (int j = i + 1; j > 0; j--)
+                //Little more optomize by reducing the shifts that are larger than P as they are already sorted
+                //https://stackoverflow.com/questions/43363071/why-is-my-selection-sort-algorithm-consistently-faster-than-my-insertion-sort
+                double p = doublesArray1[i];
+                for (int j = i; j > 0 && doublesArray1[j-1] > p; j--)
                 {
 
                     if (doublesArray1[j - 1] > doublesArray1[j])

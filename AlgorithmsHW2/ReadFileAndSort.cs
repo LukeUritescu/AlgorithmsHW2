@@ -22,7 +22,7 @@ namespace AlgorithmsHW2
         private List<double> myBaseDoubles;
         private List<string> finalSortedData;
 
-        private string path = @"C:\Workspace\Algorithms\AlgorithmsHW2\OneMillValues.csv";
+        private string path = @"C:\Workspace\Algorithms\AlgorithmsHW2\SixThousandValues.csv";
 
 
         public ReadFileAndSort()
@@ -53,14 +53,12 @@ namespace AlgorithmsHW2
             bubbleGuid.BubbleSort();
             stopWatch.StopStopWatch();
             stopWatch.GetTimeElapsed("Bubble Sort Guid");
-            Console.ReadLine();
 
             stopWatch.ResetStopWatch();
             stopWatch.StartStopWatch();
             WriteSortedListBubbleGuid(@"c:\Workspace\Algorithms\GuidBubbleSort.csv");
             stopWatch.StartStopWatch();
             stopWatch.GetTimeElapsed("Bubble Sort Guid To Write To File");
-            Console.ReadLine();
         }
         public void BubbleSortDouble()
         {
@@ -69,14 +67,12 @@ namespace AlgorithmsHW2
             bubbleDouble.BubbleSort();
             stopWatch.StopStopWatch();
             stopWatch.GetTimeElapsed("Bubble Sort Double");
-            Console.ReadLine();
 
             stopWatch.ResetStopWatch();
             stopWatch.StartStopWatch();
             WriteSortedListBubbleDouble(@"c:\Workspace\Algorithms\DoubleBubbleSort.csv");
             stopWatch.StartStopWatch();
             stopWatch.GetTimeElapsed("Bubble Sort Double To Write To File");
-            Console.ReadLine();
         }
 
 
@@ -88,14 +84,12 @@ namespace AlgorithmsHW2
             insertionGuids.Insertion();
             stopWatch.StopStopWatch();
             stopWatch.GetTimeElapsed("Insertion Sort Guids");
-            Console.ReadLine();
 
             stopWatch.ResetStopWatch();
             stopWatch.StartStopWatch();
             WriteSortedListInsertionGuids(@"c:\Workspace\Algorithms\GuidInsertionSort.csv");
             stopWatch.StartStopWatch();
             stopWatch.GetTimeElapsed("Insertion Sort Guids To Write To File");
-            Console.ReadLine();
         }
 
         public void InsertionSortDouble()
@@ -105,14 +99,12 @@ namespace AlgorithmsHW2
             insertionDouble.Insertion();
             stopWatch.StopStopWatch();
             stopWatch.GetTimeElapsed("Insertion Sort Double");
-            Console.ReadLine();
 
             stopWatch.ResetStopWatch();
             stopWatch.StartStopWatch();
             WriteSortedListInsertionDouble(@"c:\Workspace\Algorithms\DoubleInsertionSort.csv");
             stopWatch.StartStopWatch();
             stopWatch.GetTimeElapsed("Insertion Sort Double To Write To File");
-            Console.ReadLine();
         }
 
 
@@ -124,14 +116,12 @@ namespace AlgorithmsHW2
             quickGuidSort.QuickSortData(0, GetMyGuids().Count - 1);
             stopWatch.StopStopWatch();
             stopWatch.GetTimeElapsed("Quick Sort Guid ");
-            Console.ReadLine();
 
             stopWatch.ResetStopWatch();
             stopWatch.StartStopWatch();
             WriteSortedGuidQuickSortList(@"c:\Workspace\Algorithms\GuidQuickSort.csv");
             stopWatch.StartStopWatch();
             stopWatch.GetTimeElapsed("Quick Sort Guid To Write To File");
-            Console.ReadLine();
         }
 
         public void QuickSortDoubleData()
@@ -141,14 +131,12 @@ namespace AlgorithmsHW2
             quickSort.QuickSortData(0, GetMyDoubles().Count - 1);
             stopWatch.StopStopWatch();
             stopWatch.GetTimeElapsed("Quick Sort Double");
-            Console.ReadLine();
 
             stopWatch.ResetStopWatch();
             stopWatch.StartStopWatch();
             WriteSortedList(@"c:\Workspace\Algorithms\DoubleQuickSort.csv");
             stopWatch.StartStopWatch();
             stopWatch.GetTimeElapsed("Quick Sort Double To Write To File");
-            Console.ReadLine();
         }
 
         public void RadixSortGuidData()
@@ -159,14 +147,12 @@ namespace AlgorithmsHW2
             radixGuidSort.radixSort();
             stopWatch.StopStopWatch();
             stopWatch.GetTimeElapsed("Radix Sort Guid");
-            Console.ReadLine();
 
             stopWatch.ResetStopWatch();
             stopWatch.StartStopWatch();
             WriteSortedListGuidRadix(@"c:\Workspace\Algorithms\GuidRadixSortWithBit.csv");
             stopWatch.StartStopWatch();
             stopWatch.GetTimeElapsed("Radix Sort Guid To Write To File");
-            Console.ReadLine();
         }
 
         public void RadixSortDoubleData()
@@ -176,14 +162,12 @@ namespace AlgorithmsHW2
             radixSort.radixSort();
             stopWatch.StopStopWatch();
             stopWatch.GetTimeElapsed("Radix Sort Double");
-            Console.ReadLine();
 
             stopWatch.ResetStopWatch();
             stopWatch.StartStopWatch();
             WriteSortedListRadix(@"c:\Workspace\Algorithms\DoubleRadixSort.csv");
             stopWatch.StartStopWatch();
             stopWatch.GetTimeElapsed("Radix Sort Double To Write To File");
-            Console.ReadLine();
         }
 
 

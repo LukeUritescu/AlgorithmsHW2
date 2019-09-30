@@ -20,23 +20,27 @@ namespace AlgorithmsHW2
         /// <reference>
         /// https://www.w3resource.com/csharp-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-3.php 
         /// https://www.tutorialspoint.com/Bubble-Sort-program-in-Chash
+        /// https://stackoverflow.com/questions/16195092/optimized-bubble-sort-java
         /// </reference>
         /// 
         public void BubbleSort()
         {
             double keyTemp;
-
-            for (int x = 0; x <= doublesArray1.Length - 2; x++)
+            int lastSwap = doublesArray1.Length - 1;
+            for (int x = 0; x <= doublesArray1.Length - 1; x++)
             {
-                for (int y = 0; y <= doublesArray1.Length - 2; y++)
+                int currentSwap = -1;
+                for (int y = 0; y < lastSwap; y++)
                 {
                     if (doublesArray1[y] > doublesArray1[y + 1])
                     {
                         keyTemp = doublesArray1[y + 1];
                         doublesArray1[y + 1] = doublesArray1[y];
                         doublesArray1[y] = keyTemp;
+                        currentSwap = y;
                     }
                 }
+                lastSwap = currentSwap;
             }
 
         }
