@@ -4,6 +4,11 @@ using System.Text;
 
 namespace AlgorithmsHW2
 {
+    /// <reference>
+    /// https://www.w3resource.com/csharp-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-3.php 
+    /// https://www.tutorialspoint.com/Bubble-Sort-program-in-Chash
+    /// https://stackoverflow.com/questions/16195092/optimized-bubble-sort-java
+    /// </reference>
     class BubbleSortGuids
     {
         private List<Guid> sortGuidList;

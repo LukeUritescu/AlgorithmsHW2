@@ -9,6 +9,7 @@ namespace AlgorithmsHW2
     /// References: 
     /// https://github.com/bephrem1/backtobackswe/blob/master/Sorting%2C%20Searching%2C%20%26%20Heaps/Quicksort/Quicksort.java
     /// https://www.w3resource.com/csharp-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-9.php
+    /// https://www.youtube.com/watch?v=uXBnyYuwPe8 This one was a great lesson on understanding Quicksort
     /// </summary>
 
 

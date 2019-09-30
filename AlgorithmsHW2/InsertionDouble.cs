@@ -4,6 +4,11 @@ using System.Text;
 
 namespace AlgorithmsHW2
 {
+    /// <summary>
+    /// Referernces:
+    /// https://www.w3resource.com/csharp-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-6.php
+    /// https://www.geeksforgeeks.org/insertion-sort/
+    /// </summary>
     public class InsertionDouble
     {
         double[] doublesArray1;

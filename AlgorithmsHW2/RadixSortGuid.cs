@@ -8,6 +8,7 @@ namespace AlgorithmsHW2
     /// References: 
     /// https://www.cs.usfca.edu/~galles/visualization/RadixSort.html
     /// https://stackoverflow.com/questions/2685035/is-there-a-good-radixsort-implementation-for-floats-in-c-sharp
+    /// https://www.codeproject.com/Articles/32382/Radix-Sorting-Implementation-with-C
     /// </summary>
     public class RadixSortGuid
     {

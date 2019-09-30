@@ -5,6 +5,9 @@ using System.Text;
 
 namespace AlgorithmsHW2
 {
+    /// <summary>
+    /// This whole class is a lot of similar functions and their only difference is for the type of sort
+    /// </summary>
     public class ReadFileAndSort
     {
         PersonalStopWatch stopWatch;
@@ -44,7 +47,29 @@ namespace AlgorithmsHW2
             bubbleGuid = new BubbleSortGuids(GetMyGuids());
 
         }
+        public List<double> GetMyDoubles()
+        {
+            return myBaseDoubles;
+        }
 
+        public List<Guid> GetMyGuids()
+        {
+            return myBaseGuids;
+        }
+
+        public void ReadInValues()
+        {
+            foreach (string line in File.ReadLines(path))
+            {
+                string[] values = line.Split(',');
+
+
+                myBaseInts.Add(Int32.Parse(values[0]));
+                myBaseGuids.Add(Guid.Parse(values[1]));
+                myBaseDoubles.Add(Double.Parse(values[2]));
+            }
+        }
+        //These  functions run each sort and have a timer to see how long they take to complete 
         public void BubbleSortGuid()
         {
             bubbleGuid.changeGuidsToInt64();
@@ -170,29 +195,10 @@ namespace AlgorithmsHW2
             stopWatch.GetTimeElapsed("Radix Sort Double To Write To File");
         }
 
-
-        public List<double> GetMyDoubles()
-        {
-            return myBaseDoubles;
-        }
-
-        public List<Guid> GetMyGuids()
-        {
-            return myBaseGuids;
-        }
-
-        public void ReadInValues()
-        {
-            foreach (string line in File.ReadLines(path))
-            {
-                string[] values = line.Split(',');
-
-
-                myBaseInts.Add(Int32.Parse(values[0]));
-                myBaseGuids.Add(Guid.Parse(values[1]));
-                myBaseDoubles.Add(Double.Parse(values[2]));
-            }
-        }
+        /// <summary>
+        /// This block of fuunctions are just for writing each sort to a csv file
+        /// </summary>
+        /// <param name="path"></param>
 
         public void WriteSortedListBubbleDouble(string path)
         {
