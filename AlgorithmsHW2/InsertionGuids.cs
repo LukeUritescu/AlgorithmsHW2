@@ -30,7 +30,9 @@ namespace AlgorithmsHW2
 
         }
 
-
+        /// <summary>
+        /// Reads Guids and turns them into Int64 first and then sorts them into a different file using the Insertion Method
+        /// </summary>
         public void Insertion()
         {
             for (int i = 0; i < firstSectionGuids.LongLength - 1; i++)

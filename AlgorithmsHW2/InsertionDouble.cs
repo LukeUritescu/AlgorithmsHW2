@@ -14,7 +14,9 @@ namespace AlgorithmsHW2
         }
 
 
-
+        /// <summary>
+        /// Reads the file where the doubles are stored and sorts them in a different file using Insertion method.
+        /// </summary>
         public void Insertion()
         {
             for(int i = 0; i < doublesArray1.LongLength -1; i++)

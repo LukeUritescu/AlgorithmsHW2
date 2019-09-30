@@ -29,7 +29,9 @@ namespace AlgorithmsHW2
             }
 
         }
-
+        /// <summary>
+        /// Reads Guids and turns them into Int64 first and then sorts them into a different file using the Bubble Method
+        /// </summary>
         public void BubbleSort()
         {
             Int64 keyTemp;

@@ -13,6 +13,15 @@ namespace AlgorithmsHW2
             doublesArray1 = sortDouble.ToArray();
         }
 
+        /// <summary>
+        /// Reads the file where the doubles are stored and sorts them in a different file using the bubble method.
+        /// </summary>
+        /// 
+        /// <reference>
+        /// https://www.w3resource.com/csharp-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-3.php 
+        /// https://www.tutorialspoint.com/Bubble-Sort-program-in-Chash
+        /// </reference>
+        /// 
         public void BubbleSort()
         {
             double keyTemp;
