@@ -25,7 +25,10 @@ namespace AlgorithmsHW2
         private List<double> myBaseDoubles;
         private List<string> finalSortedData;
 
-        private string path = @"C:\Workspace\Algorithms\AlgorithmsHW2\SixThousandValues.csv";
+        //IN the folder there is three csv, one for 6k values, one for 100k values, and one for 1million values
+        //Just choose the path as the one you want to use
+        //WARNING! OneMillion value will take Bubble and Insertion sort a lot of time to do. Recommend doing 100k or 6k
+        private string path = @"C:\Workspace\Algorithms\AlgorithmsHW2\OneHundredThousandValues.csv";
 
 
         public ReadFileAndSort()
@@ -69,295 +72,71 @@ namespace AlgorithmsHW2
                 myBaseDoubles.Add(Double.Parse(values[2]));
             }
         }
-        //These  functions run each sort and have a timer to see how long they take to complete 
-        public void BubbleSortGuid()
-        {
-            bubbleGuid.changeGuidsToInt64();
-            stopWatch.ResetStopWatch();
-            stopWatch.StartStopWatch();
-            bubbleGuid.BubbleSort();
-            stopWatch.StopStopWatch();
-            stopWatch.GetTimeElapsed("Bubble Sort Guid");
-
-            stopWatch.ResetStopWatch();
-            stopWatch.StartStopWatch();
-            WriteSortedListBubbleGuid(@"c:\Workspace\Algorithms\GuidBubbleSort.csv");
-            stopWatch.StartStopWatch();
-            stopWatch.GetTimeElapsed("Bubble Sort Guid To Write To File");
-        }
-        public void BubbleSortDouble()
-        {
-            stopWatch.ResetStopWatch();
-            stopWatch.StartStopWatch();
-            bubbleDouble.BubbleSort();
-            stopWatch.StopStopWatch();
-            stopWatch.GetTimeElapsed("Bubble Sort Double");
-
-            stopWatch.ResetStopWatch();
-            stopWatch.StartStopWatch();
-            WriteSortedListBubbleDouble(@"c:\Workspace\Algorithms\DoubleBubbleSort.csv");
-            stopWatch.StartStopWatch();
-            stopWatch.GetTimeElapsed("Bubble Sort Double To Write To File");
-        }
-
-
-        public void InsertionSortGuids()
-        {
-            insertionGuids.changeGuidsToInt64();
-            stopWatch.ResetStopWatch();
-            stopWatch.StartStopWatch();
-            insertionGuids.Insertion();
-            stopWatch.StopStopWatch();
-            stopWatch.GetTimeElapsed("Insertion Sort Guids");
-
-            stopWatch.ResetStopWatch();
-            stopWatch.StartStopWatch();
-            WriteSortedListInsertionGuids(@"c:\Workspace\Algorithms\GuidInsertionSort.csv");
-            stopWatch.StartStopWatch();
-            stopWatch.GetTimeElapsed("Insertion Sort Guids To Write To File");
-        }
-
-        public void InsertionSortDouble()
-        {
-            stopWatch.ResetStopWatch();
-            stopWatch.StartStopWatch();
-            insertionDouble.Insertion();
-            stopWatch.StopStopWatch();
-            stopWatch.GetTimeElapsed("Insertion Sort Double");
-
-            stopWatch.ResetStopWatch();
-            stopWatch.StartStopWatch();
-            WriteSortedListInsertionDouble(@"c:\Workspace\Algorithms\DoubleInsertionSort.csv");
-            stopWatch.StartStopWatch();
-            stopWatch.GetTimeElapsed("Insertion Sort Double To Write To File");
-        }
-
-
-        public void QuickSortGuidData()
-        {
-            quickGuidSort.changeGuidsToInt64();
-            stopWatch.ResetStopWatch();
-            stopWatch.StartStopWatch();
-            quickGuidSort.QuickSortData(0, GetMyGuids().Count - 1);
-            stopWatch.StopStopWatch();
-            stopWatch.GetTimeElapsed("Quick Sort Guid ");
-
-            stopWatch.ResetStopWatch();
-            stopWatch.StartStopWatch();
-            WriteSortedGuidQuickSortList(@"c:\Workspace\Algorithms\GuidQuickSort.csv");
-            stopWatch.StartStopWatch();
-            stopWatch.GetTimeElapsed("Quick Sort Guid To Write To File");
-        }
-
-        public void QuickSortDoubleData()
-        {
-            stopWatch.ResetStopWatch();
-            stopWatch.StartStopWatch();
-            quickSort.QuickSortData(0, GetMyDoubles().Count - 1);
-            stopWatch.StopStopWatch();
-            stopWatch.GetTimeElapsed("Quick Sort Double");
-
-            stopWatch.ResetStopWatch();
-            stopWatch.StartStopWatch();
-            WriteSortedList(@"c:\Workspace\Algorithms\DoubleQuickSort.csv");
-            stopWatch.StartStopWatch();
-            stopWatch.GetTimeElapsed("Quick Sort Double To Write To File");
-        }
-
-        public void RadixSortGuidData()
-        {
-            radixGuidSort.changeGuidsToInt64();
-            stopWatch.ResetStopWatch();
-            stopWatch.StartStopWatch();
-            radixGuidSort.radixSort();
-            stopWatch.StopStopWatch();
-            stopWatch.GetTimeElapsed("Radix Sort Guid");
-
-            stopWatch.ResetStopWatch();
-            stopWatch.StartStopWatch();
-            WriteSortedListGuidRadix(@"c:\Workspace\Algorithms\GuidRadixSortWithBit.csv");
-            stopWatch.StartStopWatch();
-            stopWatch.GetTimeElapsed("Radix Sort Guid To Write To File");
-        }
-
-        public void RadixSortDoubleData()
-        {
-            stopWatch.ResetStopWatch();
-            stopWatch.StartStopWatch();
-            radixSort.radixSort();
-            stopWatch.StopStopWatch();
-            stopWatch.GetTimeElapsed("Radix Sort Double");
-
-            stopWatch.ResetStopWatch();
-            stopWatch.StartStopWatch();
-            WriteSortedListRadix(@"c:\Workspace\Algorithms\DoubleRadixSort.csv");
-            stopWatch.StartStopWatch();
-            stopWatch.GetTimeElapsed("Radix Sort Double To Write To File");
-        }
-
         /// <summary>
-        /// This block of fuunctions are just for writing each sort to a csv file
+        /// Can comment out any of the algorithms in SortTheAlgorithms to see individual performance
         /// </summary>
-        /// <param name="path"></param>
-
-        public void WriteSortedListBubbleDouble(string path)
+        public void SortTheAlgorithms()
         {
-            try
-            {
-                using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true))
-                {
-                    for (int i = 0; i < myBaseDoubles.Count; i++)
-                    {
-                        file.WriteLine(bubbleDouble.GetBubbleSortDouble()[i].ToString());
-                    }
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw new ApplicationException("This program did not work:", ex);
-            }
+           
+            //Quick Sort
+            Console.WriteLine("============Quick Sort============");
+            SortGuidData(quickGuidSort, "Quick Sort Guid");
+            SortDoubleData(quickSort, "Quick Sort Double");
+            //Radix Sort
+            Console.WriteLine("============Radix Sort============");
+            SortGuidData(radixGuidSort, "Radix Sort Guid");
+            SortDoubleData(radixSort, "Radix Sort Double");
+            //Bubble Sort
+            Console.WriteLine("============Bubble Sort============");
+            SortGuidData(bubbleGuid, "Bubble Sort Guid");
+            SortDoubleData(bubbleDouble, "Bubble Sort Double");
+            //Insertion Sort
+            Console.WriteLine("============Insertion Sort============");
+            SortGuidData(insertionGuids, "Insertion Sort Guid");
+            SortDoubleData(insertionDouble, "Insertion Sort Double");
         }
 
-        public void WriteSortedListBubbleGuid(string path)
+        //I have two methods one for the guids and the other for Doubles
+        public void SortGuidData(ISorts sortingMethod, string nameOfSort)
         {
-            try
-            {
-                using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true))
-                {
-                    for (int i = 0; i < myBaseDoubles.Count; i++)
-                    {
-                        file.WriteLine(bubbleGuid.GetBubbleSortDouble()[i].ToString());
-                    }
+            sortingMethod.ChangeGuidsToInt64();
+            stopWatch.ResetStopWatch();
+            stopWatch.StartStopWatch();
+            
+            sortingMethod.Sort();
 
-                }
+            stopWatch.StopStopWatch();
+            stopWatch.GetTimeElapsed(nameOfSort);
 
-            }
-            catch (Exception ex)
-            {
-                throw new ApplicationException("This program did not work:", ex);
-            }
+            stopWatch.ResetStopWatch();
+            stopWatch.StartStopWatch();
+
+            sortingMethod.WriteSortList();
+            stopWatch.StartStopWatch();
+
+            stopWatch.GetTimeElapsed(nameOfSort + " To Write To File");
+        }
+        public void SortDoubleData(ISorts sortingMethod, string nameOfSort)
+        {
+            stopWatch.ResetStopWatch();
+            stopWatch.StartStopWatch();
+
+            sortingMethod.Sort();
+
+            stopWatch.StopStopWatch();
+            stopWatch.GetTimeElapsed(nameOfSort);
+
+            stopWatch.ResetStopWatch();
+            stopWatch.StartStopWatch();
+
+            sortingMethod.WriteSortList();
+
+            stopWatch.StartStopWatch();
+            stopWatch.GetTimeElapsed(nameOfSort + "To Write To File");
+            
         }
 
-        public void WriteSortedListInsertionDouble(string path)
-        {
-            try
-            {
-                using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true))
-                {
-                    for (int i = 0; i < myBaseDoubles.Count; i++)
-                    {
-                        file.WriteLine(insertionDouble.GetDoubleInsertion()[i].ToString());
-                    }
 
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw new ApplicationException("This program did not work:", ex);
-            }
-        }
-
-        public void WriteSortedListInsertionGuids(string path)
-        {
-            try
-            {
-                using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true))
-                {
-                    for (int i = 0; i < myBaseDoubles.Count; i++)
-                    {
-                        file.WriteLine(insertionGuids.GetGuidInsertion()[i].ToString());
-                    }
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw new ApplicationException("This program did not work:", ex);
-            }
-        }
-
-        public void WriteSortedList(string path)
-        {
-            try
-            {
-                using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true))
-                {
-                    for (int i = 0; i < myBaseDoubles.Count; i++)
-                    {
-                        file.WriteLine(quickSort.GetQuickSortDoubleList()[i].ToString());
-                    }
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw new ApplicationException("This program did not work:", ex);
-            }
-        }
-
-        public void WriteSortedGuidQuickSortList(string path)
-        {
-            try
-            {
-                using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true))
-                {
-                    for (int i = 0; i < myBaseDoubles.Count; i++)
-                    {
-                        file.WriteLine(quickGuidSort.GetQuickSortGuidList()[i].ToString());
-                    }
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw new ApplicationException("This program did not work:", ex);
-            }
-        }
-
-        public void WriteSortedListGuidRadix(string path)
-        {
-            try
-            {
-                using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true))
-                {
-                    for (int i = 0; i < radixSort.GetRadixSort().Length; i++)
-                    {
-                        file.WriteLine(radixGuidSort.GetRadixSort()[i].ToString());
-                    }
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw new ApplicationException("This program did not work:", ex);
-            }
-        }
-
-        public void WriteSortedListRadix(string path)
-        {
-            try
-            {
-                using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true))
-                {
-                    for (int i = 0; i < radixSort.GetRadixSort().Length; i++)
-                    {
-                        file.WriteLine(radixSort.GetRadixSort()[i].ToString());
-                    }
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw new ApplicationException("This program did not work:", ex);
-            }
-        }
+        
     }
 }

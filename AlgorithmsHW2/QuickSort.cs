@@ -13,7 +13,7 @@ namespace AlgorithmsHW2
     /// </summary>
 
 
-    public class QuickSort
+    public class QuickSort : ISorts
     {
 
         private List<double> sortList;
@@ -70,6 +70,37 @@ namespace AlgorithmsHW2
             sortList[positionLeft] = sortList[positionRight];
             sortList[positionRight] = tempValue;
 
+        }
+
+        public void Sort()
+        {
+            QuickSortData(0, sortList.Count - 1);
+        }
+
+        public void WriteSortList()
+        {
+            string path = @"c:\Workspace\Algorithms\DoubleQuickSortDry.csv";
+            try
+            {
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true))
+                {
+                    for (int i = 0; i < sortList.Count; i++)
+                    {
+                        file.WriteLine(GetQuickSortDoubleList()[i].ToString());
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("This program did not work:", ex);
+            }
+        }
+
+        public void ChangeGuidsToInt64()
+        {
+            throw new NotImplementedException();
         }
     }
 }

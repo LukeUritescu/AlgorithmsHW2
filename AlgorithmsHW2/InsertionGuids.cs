@@ -9,7 +9,7 @@ namespace AlgorithmsHW2
     /// https://www.w3resource.com/csharp-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-6.php
     /// https://www.geeksforgeeks.org/insertion-sort/
     /// </summary>
-    class InsertionGuids
+    public class InsertionGuids : ISorts
     {
         private List<Guid> sortGuidsList;
         private Int64[] firstSectionGuids;
@@ -22,7 +22,7 @@ namespace AlgorithmsHW2
             secondSectionGuids = new Int64[sortGuids.Count];
         }
 
-        public void changeGuidsToInt64()
+        public void ChangeGuidsToInt64()
         {
 
             for (int i = 0; i < sortGuidsList.Count; i++)
@@ -79,6 +79,32 @@ namespace AlgorithmsHW2
         public List<Guid> GetGuidInsertion()
         {
             return sortGuidsList;
+        }
+
+        public void Sort()
+        {
+            Insertion();
+        }
+
+        public void WriteSortList()
+        {
+            string path = @"c:\Workspace\Algorithms\GuidInsertionSortDry.csv";
+            try
+            {
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true))
+                {
+                    for (int i = 0; i < GetGuidInsertion().Count; i++)
+                    {
+                        file.WriteLine(GetGuidInsertion()[i].ToString());
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("This program did not work:", ex);
+            }
         }
     }
 }

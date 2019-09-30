@@ -9,7 +9,7 @@ namespace AlgorithmsHW2
     /// https://www.cs.usfca.edu/~galles/visualization/RadixSort.html
     /// https://stackoverflow.com/questions/2685035/is-there-a-good-radixsort-implementation-for-floats-in-c-sharp
     /// </summary>
-    public class RadixSort
+    public class RadixSort : ISorts
     {
         double[] finalSortedArray;
         double[] sortList;
@@ -20,7 +20,7 @@ namespace AlgorithmsHW2
             sortList = sortListBase.ToArray();
         }
 
-        public void radixSort()
+        public void RadixSortMethod()
         {
             long[] tempList = new long[sortList.LongLength];
             long[] convertedListDoubles = new long[sortList.LongLength];
@@ -107,5 +107,35 @@ namespace AlgorithmsHW2
             return finalSortedArray;
         }
 
+        public void Sort()
+        {
+            RadixSortMethod();
+        }
+
+        public void WriteSortList()
+        {
+            string path = @"c:\Workspace\Algorithms\DoubleRadixSortDry.csv";
+                try
+                {
+                    using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true))
+                    {
+                        for (int i = 0; i < GetRadixSort().Length; i++)
+                        {
+                            file.WriteLine(GetRadixSort()[i].ToString());
+                        }
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    throw new ApplicationException("This program did not work:", ex);
+                }
+        }
+
+        public void ChangeGuidsToInt64()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

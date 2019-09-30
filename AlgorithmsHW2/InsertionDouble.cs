@@ -9,7 +9,7 @@ namespace AlgorithmsHW2
     /// https://www.w3resource.com/csharp-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-6.php
     /// https://www.geeksforgeeks.org/insertion-sort/
     /// </summary>
-    public class InsertionDouble
+    public class InsertionDouble : ISorts
     {
         double[] doublesArray1;
         public InsertionDouble(List<double> sortDouble)
@@ -45,6 +45,37 @@ namespace AlgorithmsHW2
         public double[] GetDoubleInsertion()
         {
             return doublesArray1;
+        }
+
+        public void Sort()
+        {
+            Insertion();
+        }
+
+        public void WriteSortList()
+        {
+            string path = @"c:\Workspace\Algorithms\DoubleInsertionSortDry.csv";
+            try
+            {
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true))
+                {
+                    for (int i = 0; i < GetDoubleInsertion().LongLength; i++)
+                    {
+                        file.WriteLine(GetDoubleInsertion()[i].ToString());
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("This program did not work:", ex);
+            }
+        }
+
+        public void ChangeGuidsToInt64()
+        {
+            throw new NotImplementedException();
         }
     }
 }

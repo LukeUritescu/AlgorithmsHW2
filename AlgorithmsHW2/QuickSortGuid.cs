@@ -9,7 +9,7 @@ namespace AlgorithmsHW2
     /// https://github.com/bephrem1/backtobackswe/blob/master/Sorting%2C%20Searching%2C%20%26%20Heaps/Quicksort/Quicksort.java
     /// https://www.w3resource.com/csharp-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-9.php
     /// </summary>
-    public class QuickSortGuid
+    public class QuickSortGuid : ISorts
     {
         private List<Guid> sortGuidList;
         private List<Int64> firstSectionGuids;
@@ -23,7 +23,7 @@ namespace AlgorithmsHW2
 
         }
 
-        public void changeGuidsToInt64()
+        public void ChangeGuidsToInt64()
         {
 
             for (int i = 0; i < sortGuidList.Count; i++)
@@ -40,10 +40,6 @@ namespace AlgorithmsHW2
         //    return firstSectionGuids;
         //}
 
-        public List<Guid> GetQuickSortGuidList()
-        {
-            return sortGuidList;
-        }
 
         public void QuickSortData(int positionLeft, int positionRight)
         {
@@ -98,6 +94,37 @@ namespace AlgorithmsHW2
             Guid tempGuidValue = sortGuidList[positionLeft];
             sortGuidList[positionLeft] = sortGuidList[positionRight];
             sortGuidList[positionRight] = tempGuidValue;
+        }
+
+        public void Sort()
+        {
+            QuickSortData(0, sortGuidList.Count - 1);
+        }
+
+        public List<Guid> GetQuickSortGuidList()
+        {
+            return sortGuidList;
+        }
+
+        public void WriteSortList()
+        {
+            string path = @"c:\Workspace\Algorithms\GuidQuickSortDry.csv";
+            try
+            {
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true))
+                {
+                    for (int i = 0; i < GetQuickSortGuidList().Count; i++)
+                    {
+                        file.WriteLine(GetQuickSortGuidList()[i].ToString());
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("This program did not work:", ex);
+            }
         }
     }
 }

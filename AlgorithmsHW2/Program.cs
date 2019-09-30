@@ -20,17 +20,7 @@ namespace AlgorithmsHW2
 
             readFile = new ReadFileAndSort();
 
-            readFile.BubbleSortDouble();
-            readFile.BubbleSortGuid();
-
-            readFile.InsertionSortGuids();
-            readFile.InsertionSortDouble();
-
-            readFile.QuickSortGuidData();
-            readFile.QuickSortDoubleData();
-
-            readFile.RadixSortGuidData();
-            readFile.RadixSortDoubleData();
+            readFile.SortTheAlgorithms();
 
             Console.ReadLine();
 

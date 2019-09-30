@@ -10,7 +10,7 @@ namespace AlgorithmsHW2
     /// https://stackoverflow.com/questions/2685035/is-there-a-good-radixsort-implementation-for-floats-in-c-sharp
     /// https://www.codeproject.com/Articles/32382/Radix-Sorting-Implementation-with-C
     /// </summary>
-    public class RadixSortGuid
+    public class RadixSortGuid : ISorts
     {
         //This is to take in the  
         Guid[] sortGuidArray;
@@ -40,7 +40,7 @@ namespace AlgorithmsHW2
         /// <summary>
         /// We treat the Guid elements as strings, split them by '-' then parse them as hexnumbers into an Int64 array
         /// </summary>
-        public void changeGuidsToInt64()
+        public void ChangeGuidsToInt64()
         {
 
             for (int i = 0; i < sortGuidArray.LongLength; i++)
@@ -53,7 +53,7 @@ namespace AlgorithmsHW2
 
         }
 
-        public void radixSort()
+        public void RadixSortMethod()
         {
             ///Temporary array and array of converted Int64 to Longs
             long[] tempArray = new long[firstSectionGuids.Length];
@@ -154,6 +154,31 @@ namespace AlgorithmsHW2
             return finalSortedGuidArray;
         }
 
+        public void Sort()
+        {
+            RadixSortMethod();
+        }
+
+        public void WriteSortList()
+        {
+            string path = @"c:\Workspace\Algorithms\GuidRadixSortWithBitDry.csv";
+            try
+            {
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true))
+                {
+                    for (int i = 0; i < GetRadixSort().Length; i++)
+                    {
+                        file.WriteLine(GetRadixSort()[i].ToString());
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("This program did not work:", ex);
+            }
+        }
     }
 }
 

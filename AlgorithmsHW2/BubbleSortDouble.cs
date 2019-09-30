@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AlgorithmsHW2
 {
-    public class BubbleSortDouble
+    public class BubbleSortDouble : ISorts
     {
         double[] doublesArray1;
         public BubbleSortDouble(List<double> sortDouble)
@@ -45,6 +45,11 @@ namespace AlgorithmsHW2
 
         }
 
+        public void ChangeGuidsToInt64()
+        {
+            throw new NotImplementedException();
+        }
+
         public double[] GetBubbleSortDouble()
         {
             return doublesArray1;
@@ -52,5 +57,30 @@ namespace AlgorithmsHW2
         }
 
 
+        public void Sort()
+        {
+            BubbleSort();
+        }
+
+        public void WriteSortList()
+        {
+            string path = @"c:\Workspace\Algorithms\DoubleBubbleSortDry.csv";
+            try
+            {
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true))
+                {
+                    for (int i = 0; i < GetBubbleSortDouble().LongLength; i++)
+                    {
+                        file.WriteLine(GetBubbleSortDouble()[i].ToString());
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("This program did not work:", ex);
+            }
+        }
     }
 }

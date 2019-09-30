@@ -9,7 +9,7 @@ namespace AlgorithmsHW2
     /// https://www.tutorialspoint.com/Bubble-Sort-program-in-Chash
     /// https://stackoverflow.com/questions/16195092/optimized-bubble-sort-java
     /// </reference>
-    class BubbleSortGuids
+    class BubbleSortGuids : ISorts
     {
         private List<Guid> sortGuidList;
         private Int64[] firstSectionGuids;
@@ -22,7 +22,7 @@ namespace AlgorithmsHW2
             secondSectionGuids = new Int64[sortGuids.Count];
         }
 
-        public void changeGuidsToInt64()
+        public void ChangeGuidsToInt64()
         {
 
             for (int i = 0; i < sortGuidList.Count; i++)
@@ -82,5 +82,33 @@ namespace AlgorithmsHW2
         {
             return sortGuidList;
         }
+
+        public void Sort()
+        {
+            BubbleSort();
+        }
+
+        public void WriteSortList()
+        {
+            string path = @"c:\Workspace\Algorithms\GuidBubbleSortDry.csv";
+            try
+            {
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(path, true))
+                {
+                    for (int i = 0; i < GetBubbleSortDouble().Count; i++)
+                    {
+                        file.WriteLine(GetBubbleSortDouble()[i].ToString());
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("This program did not work:", ex);
+            }
+        }
+
+
     }
 }
