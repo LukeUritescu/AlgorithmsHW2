@@ -4,6 +4,11 @@ using System.Text;
 
 namespace AlgorithmsHW2
 {
+    /// <summary>
+    /// References: 
+    /// https://www.cs.usfca.edu/~galles/visualization/RadixSort.html
+    /// https://stackoverflow.com/questions/2685035/is-there-a-good-radixsort-implementation-for-floats-in-c-sharp
+    /// </summary>
     public class RadixSort
     {
         double[] finalSortedArray;

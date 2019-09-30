@@ -7,10 +7,11 @@ namespace AlgorithmsHW2
     public class RadixSortGuid
     {
         //This is to take in the  
-        List<Guid> sortGuidList;
+        Guid[] sortGuidArray;
 
         /// We are using Arrays for this sort because I wasn't able to get Lists to work
         Int64[] finalSortedArray;
+        Guid[] finalSortedGuidArray;
 
         private Int64[] firstSectionGuids;
         private Int64[] secondSectionGuids;
@@ -22,10 +23,12 @@ namespace AlgorithmsHW2
         public RadixSortGuid(List<Guid> sortListBase)
         {
             finalSortedArray = new Int64[sortListBase.Count];
+            finalSortedGuidArray = new Guid[sortListBase.Count];
 
-            sortGuidList = new List<Guid>(sortListBase);
-            firstSectionGuids = new Int64[sortGuidList.Count];
-            secondSectionGuids = new Int64[sortGuidList.Count];
+            sortGuidArray = new Guid[sortListBase.Count];
+            sortGuidArray = sortListBase.ToArray();
+            firstSectionGuids = new Int64[sortListBase.Count];
+            secondSectionGuids = new Int64[sortListBase.Count];
         }
 
         /// <summary>
@@ -34,9 +37,9 @@ namespace AlgorithmsHW2
         public void changeGuidsToInt64()
         {
 
-            for (int i = 0; i < sortGuidList.Count; i++)
+            for (int i = 0; i < sortGuidArray.LongLength; i++)
             {
-                string[] values = sortGuidList[i].ToString().Split('-');
+                string[] values = sortGuidArray[i].ToString().Split('-');
                 firstSectionGuids[i] = (Int64.Parse(values[0].ToString(), System.Globalization.NumberStyles.HexNumber));
                 secondSectionGuids[i] = ((Int64.Parse(values[1].ToString(), System.Globalization.NumberStyles.HexNumber)));
 
@@ -49,6 +52,7 @@ namespace AlgorithmsHW2
             ///Temporary array and array of converted Int64 to Longs
             long[] tempArray = new long[firstSectionGuids.Length];
             long[] convertedArrayGuids = new long[firstSectionGuids.LongLength];
+            Guid[] tempGuid = new Guid[sortGuidArray.LongLength];
 
             ///BitConverter.GetBytes converts the specified array into an array of bytes
             ///BitConverterr.ToInt64 converts that array of bytes into a 64-bit signed integer
@@ -81,7 +85,7 @@ namespace AlgorithmsHW2
                 for (int i = 0; i < convertedArrayGuids.LongLength; i++)
                 {
                     count[(convertedArrayGuids[i] >> shift) & mask]++;
-                    //checks ofr negative values
+                    //checks r negative values
                     if (c == 0 && convertedArrayGuids[i] < 0)
                         negatives++;
                 }
@@ -113,26 +117,35 @@ namespace AlgorithmsHW2
                         }
                     }
                     tempArray[index] = convertedArrayGuids[i];
+                    tempGuid[index] = sortGuidArray[i];
                 }
                     //This repeats the process until the last group of sorting
                 tempArray.CopyTo(convertedArrayGuids, 0);
+                tempGuid.CopyTo(sortGuidArray, 0);
             }
 
 
 
             //Converts backk the longs to Int64
-            finalSortedArray = new Int64[firstSectionGuids.LongLength];
+            //finalSortedArray = new Int64[firstSectionGuids.LongLength];
+            //finalSortedGuidArray = new Guid[sortGuidArray.LongLength];
             for (int i = 0; i < convertedArrayGuids.LongLength; i++)
             {
                 finalSortedArray[i] = convertedArrayGuids[i];
                 //finalSortedArray[i] = BitConverter.ToInt64(BitConverter.GetBytes(convertedArrayGuids[i]), 0);
+                finalSortedGuidArray[i] = sortGuidArray[i];
             }
 
         }
 
-        public Int64[] GetRadixSort()
+        //public Int64[] GetRadixSort()
+        //{
+        //    return finalSortedArray;
+        //}
+
+        public Guid[] GetRadixSort()
         {
-            return finalSortedArray;
+            return finalSortedGuidArray;
         }
 
     }

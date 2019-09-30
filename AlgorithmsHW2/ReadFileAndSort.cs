@@ -22,7 +22,7 @@ namespace AlgorithmsHW2
         private List<double> myBaseDoubles;
         private List<string> finalSortedData;
 
-        private string path = @"C:\Workspace\Algorithms\AlgorithmsHW2\SixThousandValues.csv";
+        private string path = @"C:\Workspace\Algorithms\AlgorithmsHW2\OneMillValues.csv";
 
 
         public ReadFileAndSort()

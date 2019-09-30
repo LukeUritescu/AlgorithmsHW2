@@ -30,9 +30,14 @@ namespace AlgorithmsHW2
             }
         }
 
-        public List<Int64> GetQuickSortGuidList()
+        //public List<Int64> GetQuickSortGuidList()
+        //{
+        //    return firstSectionGuids;
+        //}
+
+        public List<Guid> GetQuickSortGuidList()
         {
-            return firstSectionGuids;
+            return sortGuidList;
         }
 
         public void QuickSortData(int positionLeft, int positionRight)

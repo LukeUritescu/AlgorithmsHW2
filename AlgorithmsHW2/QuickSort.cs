@@ -5,6 +5,13 @@ using System.IO;
 
 namespace AlgorithmsHW2
 {
+    /// <summary>
+    /// References: 
+    /// https://github.com/bephrem1/backtobackswe/blob/master/Sorting%2C%20Searching%2C%20%26%20Heaps/Quicksort/Quicksort.java
+    /// https://www.w3resource.com/csharp-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-9.php
+    /// </summary>
+
+
     public class QuickSort
     {
 
