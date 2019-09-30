@@ -20,17 +20,17 @@ namespace AlgorithmsHW2
 
             readFile = new ReadFileAndSort();
 
-            readFile.BubbleSortDouble();
             readFile.BubbleSortGuid();
+            readFile.BubbleSortDouble();
 
-            readFile.QuickSortDoubleData();
             readFile.QuickSortGuidData();
+            readFile.QuickSortDoubleData();
 
-            readFile.RadixSortDoubleData();
             readFile.RadixSortGuidData();
+            readFile.RadixSortDoubleData();
 
-            readFile.InsertionSortDouble();
             readFile.InsertionSortGuids();
+            readFile.InsertionSortDouble();
         }
     }
 }
